@@ -5,17 +5,13 @@
 function addGame(){
 
 
-var refsho = document.getElementById("maintable");
+var refsho = document.getElementById("mainDiv");
 
 	refsho.style="opacity:0.3";	
 
 var refadd= document.getElementById("addform");
 
 refadd.style.visibility="visible";
-
-var refdel= document.getElementById("delform");
-
-refdel.style.visibility="hidden";
 
 var refupd= document.getElementById("updform");
 
@@ -25,31 +21,31 @@ refadd.style="width:275px;height:250px;border-radius: 25px;position: absolute;ba
 
 }
 
-function delGame(){
+// function delGame(){
 
-	var refsho = document.getElementById("maintable");
+// 	var refsho = document.getElementById("maintable");
 
-	refsho.style="opacity:0.3";	
+// 	refsho.style="opacity:0.3";	
 
-var refdel= document.getElementById("delform");
+// var refdel= document.getElementById("delform");
 
-refdel.style.visibility="visible";
+// refdel.style.visibility="visible";
 
-var refadd= document.getElementById("addform");
+// var refadd= document.getElementById("addform");
 
-refadd.style.visibility="hidden";
+// refadd.style.visibility="hidden";
 
-var refupd= document.getElementById("updform");
+// var refupd= document.getElementById("updform");
 
-refupd.style.visibility="hidden";
+// refupd.style.visibility="hidden";
 
-refdel.style="width:275px;height:150px;border-radius: 25px;position: absolute;background-image: url(menu.jpg);background-repeat: no-repeat;background-size: 200%;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px";
+// refdel.style="width:275px;height:150px;border-radius: 25px;position: absolute;background-image: url(menu.jpg);background-repeat: no-repeat;background-size: 200%;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px";
 
-}
+// }
 
 function updGame(){
 
-	var refsho = document.getElementById("maintable");
+	var refsho = document.getElementById("mainDiv");
 
 	refsho.style="opacity:0.3";	
 
@@ -57,9 +53,6 @@ var refupd= document.getElementById("updform");
 
 refupd.style.visibility="visible";
 
-var refdel= document.getElementById("delform");
-
-refdel.style.visibility="hidden";
 
 var refadd= document.getElementById("addform");
 
@@ -89,15 +82,15 @@ function cancel(){
 
 	var MenuAdd= document.getElementById("addform");
 
-	var MenuDel= document.getElementById("delform");
-
 	var MenuUpd= document.getElementById("updform");
 
 	MenuAdd.style.visibility="hidden";
 
-	MenuDel.style.visibility="hidden";
-
 	MenuUpd.style.visibility="hidden";
+	
+	var menu = document.getElementById("mainDiv");
+			menu.style.opacity="0.9";
+			location.reload(true);
 
 }
 
@@ -107,13 +100,9 @@ function closeMenu(){
 
 	var MenuAdd= document.getElementById("addform");
 
-	var MenuDel= document.getElementById("delform");
-
 	var MenuUpd= document.getElementById("updform");
 
 	MenuAdd.style.visibility="hidden";
-
-	MenuDel.style.visibility="hidden";
 
 	MenuUpd.style.visibility="hidden";
 
@@ -233,8 +222,9 @@ function checkvaluesdel(){
 
 	else {alert ("Submission confirmed");
 
-			location.reload(true);
-			console.log("pre function");
+			
+			var menu = document.getElementById("mainDiv");
+			menu.style.opacity="0.9";
 
 			}
 
@@ -248,13 +238,15 @@ function checkvaluesdel(){
 
 
 
-function getexistingdinos(){
+function getexistingrecs(){
 
 const Http = new XMLHttpRequest();
 const url='http://localhost:6969/gameapp/displayall';
 Http.open("GET", url);
 Http.onreadystatechange = function(e){
     if (Http.readyState==4){
+        var maintable = document.getElementById("tableBody");
+        maintable.innerHTML="";
     data=JSON.parse(Http.responseText);
     data.forEach(function(item){
         var game=document.createElement("td");
@@ -262,12 +254,22 @@ Http.onreadystatechange = function(e){
         var releaseD=document.createElement("td");
         var price=document.createElement("td");
         var rank=document.createElement("td");
+        var buttonCell = document.createElement("td");
         game.innerHTML=item.game;
         platform.innerHTML=item.platform;
         releaseD.innerHTML=item.releaseD;
         price.innerHTML= "£"+item.price;
         rank.innerHTML=item.rank;
-        var maintable = document.getElementById("maintable");
+
+        let button = document.createElement("button");
+        button.innerHTML= "X";
+        button.type="button";
+        button.className = "btn tableDel"
+        button.addEventListener("click", function() {
+        	deleteData(item.id);
+        });
+        buttonCell.appendChild(button);
+
         var mainRow=document.createElement("tr");
         
         mainRow.appendChild(game);
@@ -275,6 +277,7 @@ Http.onreadystatechange = function(e){
         mainRow.appendChild(releaseD);
        mainRow.appendChild(price);
         mainRow.appendChild(rank);
+        mainRow.appendChild(buttonCell);
         maintable.appendChild(mainRow);
 
     });
@@ -283,7 +286,7 @@ Http.onreadystatechange = function(e){
 Http.send();
 }
 
-window.onload = getexistingdinos();
+window.onload = getexistingrecs();
 
 
 
@@ -294,10 +297,7 @@ function postData(form){
 		var body= {};
 		for(var inputty of form){
 			if(inputty.name){
-
 				body [inputty.name]= inputty.value;
-
-				
 			}
 		
 		}
@@ -308,10 +308,9 @@ function postData(form){
 		Http.open("POST", 'http://localhost:6969/gameapp/addGame');
 		Http.setRequestHeader("Content-Type", "application/json");
 
-		Http.onreadystatechange= function(){
-			if(Http.readyState==4){
-				console.log(data);
-			}
+		Http.onload= function(){
+			console.log(data);
+			getexistingrecs();
 		}
 			
 		
@@ -326,50 +325,99 @@ function postData(form){
 
 //deleting a record
 
-// function closeMenudelete(){
+function deleteData(id){
+		
+		var Http= new XMLHttpRequest();
+		Http.open("DELETE", 'http://localhost:6969/gameapp//deleteEntry/' + id);
+		Http.setRequestHeader("Content-Type", "application/json");
 
-// 	var MenuDel= document.getElementById("delform");
+		Http.onload= function(){
+			getexistingrecs();
+		}
+		
+		Http.send();
+		
+		return false;
 
-// 	MenuDel.style.visibility="hidden";
-// 	console.log("hi");
-
-
-
-
-// 	return checkvaluesdelete();
-
-	
-
-// }
-
-// function checkvaluesdelete(){
-
-// 	var del = document.getElementById("t6");
-// 	var refdel= document.getElementById("delform");
-
-// 	if(del.value==""){
-
-	
-
-// 		alert ("Please enter title");
-
-// 		refdel.style.visibility="visible";
-
-// 		return false
-
-// 	}
-// 	else {alert ("Submission confirmed");
-
-// 			return deletegame();
-// 			console.log("pre function");
-
-// 			}
-// }
+	}
 
 
+//filter options
+
+function filterTable(){
+
+	var url ;
+	if(document.getElementById("filterD").value=="Price H-L"){
+		console.log("h-l")
+		url="http://localhost:6969/gameapp/filterTopPrice";
+		
+	}
+	if(document.getElementById("filterD").value=="Price L-H"){
+		console.log("l-h")
+		url="http://localhost:6969/gameapp/filterLowPrice";
+		
+	}
+	if(document.getElementById("filterD").value=="Release Date"){
+		url="http://localhost:6969/gameapp/filterReleaseD";
+		
+	}
+	if (document.getElementById("filterD").value=="Platform"){
+		url="http://localhost:6969/gameapp/filterPlatform";
+		
+	}
+	else getexistingrecs(); 
+
+const Http = new XMLHttpRequest();
+Http.open("GET", url);
+Http.onreadystatechange = function(e){
+
+    if (Http.readyState==4){
+        var maintable = document.getElementById("tableBody");
+        maintable.innerHTML="";
+    data=JSON.parse(Http.responseText);
+    data.forEach(function(item){
+    	console.log(item)
+        var game=document.createElement("td");
+        var platform=document.createElement("td");
+        var releaseD=document.createElement("td");
+        var price=document.createElement("td");
+        var rank=document.createElement("td");
+        var buttonCell = document.createElement("td");
+        game.innerHTML=item.game;
+        platform.innerHTML=item.platform;
+        releaseD.innerHTML=item.releaseD;
+        price.innerHTML= "£"+item.price;
+        rank.innerHTML=item.rank;
+
+        let button = document.createElement("button");
+        button.innerHTML= "delete";
+        button.type="button";
+        button.className = "btn tableDel"
+        button.addEventListener("click", function() {
+        	deleteData(item.id);
+        });
+        buttonCell.appendChild(button);
+
+        var mainRow=document.createElement("tr");
+        
+        mainRow.appendChild(game);
+        mainRow.appendChild(platform);
+        mainRow.appendChild(releaseD);
+       mainRow.appendChild(price);
+        mainRow.appendChild(rank);
+        mainRow.appendChild(buttonCell);
+        maintable.appendChild(mainRow);
+
+    });
+}
+}
+Http.send();
+return false
+}
 
 
-// function deletegame() {}
+
+
 
 
 

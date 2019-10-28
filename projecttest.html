@@ -1,25 +1,32 @@
 
+//cancel also submits requests
+
+
+
 <html>
 
 
 
 <head>
+  
+
+
   <link rel="stylesheet" href="styleclass.css">
 
-
-</head>
-
-
-
-<!--  background -->
-
 <style>
-	body{
-	background-image: url("bord.jpg");
+  body{
+  background-image: url("bord.jpg");
   background-repeat: no-repeat;
   background-size: 100%
 }
 </style>
+
+</head>
+<body>
+
+
+<!--  background -->
+
 
 
 
@@ -35,7 +42,7 @@
 
 	<div id="DropD" style="position:absolute;top:100px;left:950px">
 		Filter:
-<select name="Filter">
+<select  id="filterD">
   <option value="" selected></option>
   <option value="Price H-L">Price H-L</option>
   <option value="Price L-H">Price L-H</option>
@@ -47,18 +54,17 @@
 <!-- form/textfield to show records in DB -->
 
 
- <div class ="mainview" style="visibility:visible";>
+ <div class ="mainview" id="mainDiv" style="visibility:visible";>
 <table id="maintable" class="table">
- <head>
-  <tr>
+ <thead>
     <th>Game</th>
     <th>Platform</th>
     <th>Release Date</th>
     <th>Price</th>
     <th>Rank</th>
-  </tr>
-  <thead>
-    <tbody>
+    <th>Delete</th>
+  </thead>
+    <tbody id="tableBody">
 
 
 
@@ -84,23 +90,23 @@
   Price:
   <input onclick="cleartext(this)" name="price" class="textfield"type="text" value="   enter price" id="t4"><br><br>
   Rank:
-  <input onclick="cleartext(this)" name="grank" class="textfield" type="text" value="   enter rank" id="t5"><br><br>
+  <input onclick="cleartext(this)" name="rank" class="textfield" type="text" value="   enter rank" id="t5"><br><br>
   <button onclick="cancel()" style="position:absolute;top:225px;left:80px" class="button addGame">Cancel </button>
   <input type="submit" onclick="closeMenu()" style="position:absolute;top:225px;left:150px" class="addGame"> </input>
 </form>
 
  
 <!-- menu for deleting game -->
-<form id="delform" style="visibility:hidden;">
+<!-- <form id="delform" onsubmit="return deleteData(this)" style="visibility:hidden;">
 <div class="heading">
   <U><b>Delete Game </b></U><br><br><br>
 </div>
   <span style="color:white">Game Title:</span>  
-  <input onclick="cleartext(this)" class="textfield" type="text" value="   enter title here" id="t6"><br><br>
+  <input onclick="cleartext(this)" name="game" class="textfield" type="text" value="   enter title here" id="t6"><br><br>
   <button onclick="cancel()" style="position:absolute;top:125px;left:80px" class="button delG">Cancel </button>
-  <button onclick="closeMenudelete()" style="position:absolute;top:125px;left:150px" class="button delG">Confirm </button>
+  <input type="submit"  style="position:absolute;top:125px;left:150px" class=" delG"> </input>
 
-</form>
+</form> -->
 
 <!-- menu for updating game -->
 <form id="updform" style="visibility:hidden;" class="delform">
@@ -126,12 +132,19 @@
 
 <button onclick="addGame()" class="button addG">Add Game </button>
 <button onclick="updGame()" class="button updateG">Update Game</button>
-<button onclick="delGame()" class="button deleteG">Delete Game</button>
-<button class="button Filter">Search</button>
+
+<!-- <button onclick="delGame()" class="button deleteG">Delete Game</button> -->
+
+<form onsubmit="return filterTable()">
+<input type="submit" class="button Filter"></input>
+</form>
+
+<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+<script src="source/function.js"></script>
+</body>
 </html>
 
 
 
-<script src="source/function.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+
 
