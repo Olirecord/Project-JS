@@ -21,17 +21,13 @@
 }
 </style>
 
-<div class="maintable" id="showall">
 
-      <p></p>
-
-    </div>
 
 <!-- title -->
 
 <center>
-	<Style="position:absolute;top:300;right:500" font-size:30>
-		<font size="30"><B><u>Games Wishlist</u></B></font>
+	<Style="position:absolute;top:400;right:500;" font-size:30>
+		<font size="30" class="title"><B>Games Wishlist</B></font>
 		</style>
 	</center>
 
@@ -50,49 +46,59 @@
 
 <!-- form/textfield to show records in DB -->
 
-<!-- <form id="showRecs" name="showRAS" style="visibility:visible">
- <textarea id="showR" name="showRA" class=showRecs>
-  
-</textarea>
-</form>
 
-<div>
+ <div class ="mainview" style="visibility:visible";>
+<table id="maintable" class="table">
+ <head>
+  <tr>
+    <th>Game</th>
+    <th>Platform</th>
+    <th>Release Date</th>
+    <th>Price</th>
+    <th>Rank</th>
+  </tr>
+  <thead>
+    <tbody>
 
-      <p id="hi" style="visibility: visible"></p>
 
-    </div> -->
+
+   </tbody>
+</table>
+  </div>
+
+
 
 
 <!-- menu for adding game -->
 
-<form id="addform" style="visibility:hidden;" class="delform">
+<form id="addform" onsubmit=" return postData(this)" style="visibility:hidden;" class="delform">
   <div class="heading">
   <U><b>Add New Game</b></U><br><br>
 </div>
   Title:
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="enter title" id="t1"><br><br>
+  <input onclick="cleartext(this)" name="game" class="textfield" type="text" value="   enter title" id="t1"><br><br>
   Platform:
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="enter platform" id="t2"><br><br>
+  <input onclick="cleartext(this)" name="platform" class="textfield" type="text" value="   enter platform" id="t2"><br><br>
   Release date:
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="YYYY-MM-DD" id="t3"><br><br>
+  <input onclick="cleartext(this)" name="releaseD" class="textfield" type="text" value="   YYYY-MM-DD" id="t3"><br><br>
   Price:
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="enter price" id="t4"><br><br>
+  <input onclick="cleartext(this)" name="price" class="textfield"type="text" value="   enter price" id="t4"><br><br>
   Rank:
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="enter rank" id="t5"><br><br>
+  <input onclick="cleartext(this)" name="grank" class="textfield" type="text" value="   enter rank" id="t5"><br><br>
   <button onclick="cancel()" style="position:absolute;top:225px;left:80px" class="button addGame">Cancel </button>
-  <submit onclick="closeMenu()" style="position:absolute;top:225px;left:150px" class="submit addGame">Add Game </submit>
+  <input type="submit" onclick="closeMenu()" style="position:absolute;top:225px;left:150px" class="addGame"> </input>
 </form>
 
-
+ 
 <!-- menu for deleting game -->
 <form id="delform" style="visibility:hidden;">
 <div class="heading">
   <U><b>Delete Game </b></U><br><br><br>
 </div>
   <span style="color:white">Game Title:</span>  
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="enter title here" id="t6"><br><br>
+  <input onclick="cleartext(this)" class="textfield" type="text" value="   enter title here" id="t6"><br><br>
   <button onclick="cancel()" style="position:absolute;top:125px;left:80px" class="button delG">Cancel </button>
-  <submit onclick="closeMenu()" style="position:absolute;top:125px;left:150px" class="submit delG">Confirm </submit>
+  <button onclick="closeMenudelete()" style="position:absolute;top:125px;left:150px" class="button delG">Confirm </button>
 
 </form>
 
@@ -102,14 +108,14 @@
   <U><b>Update Game </b></U><br><br>
 </div>
   Game Title:  
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="enter title here" id="t7"><br><br>
+  <input onclick="cleartext(this)" class="textfield" type="text" value="   enter title here" id="t7"><br><br>
   <input type="radio" name="update" value="Price"> Price
   <input type="radio" name="update" value="Rank"> Rank
   <input type="radio" name="update" value="ReleaseD"> Release Date<br><br>
   Update Option To:
-  <input onclick="cleartext(this)" style="border-style: solid;position:absolute;left:100px;border-radius: 25px;" type="text" value="enter update here" id="t8">
+  <input onclick="cleartext(this)" class="textfield" type="text" value="   enter update here" id="t8">
   <button onclick="cancel()" style="position:absolute;top:175px;left:80px;" class="button updG">Cancel </button>
-  <submit onclick="closeMenu()" style="position:absolute;top:175px;left:150px;" class="submit updG">Confirm </submit>
+  <button onclick="closeMenu()" style="position:absolute;top:175px;left:150px;" class="button updG">Confirm </button>
 </form>
 
 
@@ -121,10 +127,11 @@
 <button onclick="addGame()" class="button addG">Add Game </button>
 <button onclick="updGame()" class="button updateG">Update Game</button>
 <button onclick="delGame()" class="button deleteG">Delete Game</button>
-<button class="button Filter">Filter</button>
+<button class="button Filter">Search</button>
 </html>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="source/function.js"></script>
-<script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+
