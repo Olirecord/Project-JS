@@ -303,7 +303,6 @@ function postData(form){
 		var Http= new XMLHttpRequest();
 		Http.open("POST", 'http://localhost:6969/gameapp/addGame');
 		Http.setRequestHeader("Content-Type", "application/json");
-
 		Http.onload= function(){
 			console.log(data);
 			getexistingrecs();
@@ -425,27 +424,27 @@ function updateRecs(){
 
 if(document.getElementById("updateF").value=="Game"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/updateGame/"+idUP+"/"+upD;
+		url="http://localhost:6969/gameapp/UpdateGame/"+idUP+"/"+upD;
 		
 	}
 	if(document.getElementById("updateF").value=="Platform"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/updatePlatform/"+idUP+"/"+upD;
+		url="http://localhost:6969/gameapp/UpdatePlatform/"+idUP+"/"+upD;
 		
 	}
 	if(document.getElementById("updateF").value=="ReleaseD"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/updateDate/"+idUP+"/"+upD;
+		url="http://localhost:6969/gameapp/UpdateDate/"+idUP+"/"+upD;
 		
 	}
 	if (document.getElementById("updateF").value=="Price"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/updatePrice/"+idUP+"/"+upD;
+		url="http://localhost:6969/gameapp/UpdatePrice/"+idUP+"/"+upD;
 		
 	}
 	if (document.getElementById("updateF").value=="Rank"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/updateRank/"+idUP+"/"+upD;
+		url="http://localhost:6969/gameapp/UpdateRank/"+idUP+"/"+upD;
 		
 	}
 	console.log("id="+idUP);
