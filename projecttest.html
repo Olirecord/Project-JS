@@ -63,6 +63,7 @@
     <th>Price</th>
     <th>Rank</th>
     <th>Delete</th>
+    <th>Update</th>
   </thead>
     <tbody id="tableBody">
 
@@ -109,19 +110,22 @@
 </form> -->
 
 <!-- menu for updating game -->
-<form id="updform" style="visibility:hidden;" class="delform">
+<form id="updform" onsubmit="return updateRecs()" style="visibility:hidden;" class="delform">
 <div class="heading">
   <U><b>Update Game </b></U><br><br>
 </div>
-  Game Title:  
-  <input onclick="cleartext(this)" class="textfield" type="text" value="   enter title here" id="t7"><br><br>
-  <input type="radio" name="update" value="Price"> Price
-  <input type="radio" name="update" value="Rank"> Rank
-  <input type="radio" name="update" value="ReleaseD"> Release Date<br><br>
+Select Update:
+ <select  id="updateF">
+  <option value="Game" selected> Game</option>
+  <option value="Platform">Platform</option>
+  <option value="ReleaseD">Release Date</option>
+  <option value="Price">Price</option>
+  <option value="Rank">Rank</option>
+</select><br><br>
   Update Option To:
-  <input onclick="cleartext(this)" class="textfield" type="text" value="   enter update here" id="t8">
+  <input onclick="cleartext(this)" class="textfield" type="text" value="enter update here" id="t8">
   <button onclick="cancel()" style="position:absolute;top:175px;left:80px;" class="button updG">Cancel </button>
-  <button onclick="closeMenu()" style="position:absolute;top:175px;left:150px;" class="button updG">Confirm </button>
+  <input type="submit" onclick="closeMenu()" style="position:absolute;top:175px;left:150px;" class="button updG">Confirm </input>
 </form>
 
 

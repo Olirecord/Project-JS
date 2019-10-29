@@ -1,6 +1,6 @@
 // functions to make forms visible
 
-
+var idUP;
 
 function addGame(){
 
@@ -43,8 +43,9 @@ refadd.style="width:275px;height:250px;border-radius: 25px;position: absolute;ba
 
 // }
 
-function updGame(){
+function updGame(id){
 
+		var I= id;
 	var refsho = document.getElementById("mainDiv");
 
 	refsho.style="opacity:0.3";	
@@ -59,6 +60,7 @@ var refadd= document.getElementById("addform");
 refadd.style.visibility="hidden";
 
 refupd.style="width:275px;height:200px;border-radius: 25px;position: absolute;background-image: url(menu.jpg);background-repeat: no-repeat;background-size: 200%;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px";
+
 
 }
 
@@ -116,9 +118,10 @@ function closeMenu(){
 
 function checkvaluesdel(){
 
-	var refupd= document.getElementById("updform");
+	
 
 	var refadd= document.getElementById("addform");
+	var refupd= document.getElementById("updform");
 
 	var addt1 = document.getElementById("t1");
 
@@ -130,35 +133,10 @@ function checkvaluesdel(){
 
 	var addt5 = document.getElementById("t5");
 
-	var upt1 = document.getElementById("t7");
+	var upt8 = document.getElementById("t8");
 
-	var upt2 = document.getElementById("t8");
-
-	
-
-	if(upt1.value==""){
 
 	
-
-		alert ("Please enter title");
-
-		refupd.style.visibility="visible";
-
-		return false
-
-	}
-
-	if(upt2.value==""){
-
-	
-
-		alert ("Missing update parameters");
-
-		refupd.style.visibility="visible";
-
-		return false
-
-	}
 
 	if(addt1.value==""){
 
@@ -219,6 +197,13 @@ function checkvaluesdel(){
 		return false
 
 	}
+	if(upt8.value==""){
+		alert ("Please enter a new value");
+
+		refupd.style.visibility="visible";
+
+		return false
+	}
 
 	else {alert ("Submission confirmed");
 
@@ -254,7 +239,8 @@ Http.onreadystatechange = function(e){
         var releaseD=document.createElement("td");
         var price=document.createElement("td");
         var rank=document.createElement("td");
-        var buttonCell = document.createElement("td");
+        var buttonDel = document.createElement("td");
+        var buttonUpd = document.createElement("td");
         game.innerHTML=item.game;
         platform.innerHTML=item.platform;
         releaseD.innerHTML=item.releaseD;
@@ -262,13 +248,22 @@ Http.onreadystatechange = function(e){
         rank.innerHTML=item.rank;
 
         let button = document.createElement("button");
-        button.innerHTML= "X";
+        button.innerHTML= "x";
         button.type="button";
         button.className = "btn tableDel"
         button.addEventListener("click", function() {
         	deleteData(item.id);
         });
-        buttonCell.appendChild(button);
+        let buttonU = document.createElement("button");
+        buttonU.innerHTML= "u";
+        buttonU.type="button";
+        buttonU.className = "btn tableDel"
+        buttonU.addEventListener("click", function() {
+        	updGame(item.id);
+        	idUP=item.id;
+        });
+        buttonDel.appendChild(button);
+        buttonUpd.appendChild(buttonU)
 
         var mainRow=document.createElement("tr");
         
@@ -277,7 +272,8 @@ Http.onreadystatechange = function(e){
         mainRow.appendChild(releaseD);
        mainRow.appendChild(price);
         mainRow.appendChild(rank);
-        mainRow.appendChild(buttonCell);
+         mainRow.appendChild(buttonDel);
+         mainRow.appendChild(buttonUpd);
         maintable.appendChild(mainRow);
 
     });
@@ -336,7 +332,6 @@ function deleteData(id){
 		}
 		
 		Http.send();
-		
 		return false;
 
 	}
@@ -348,24 +343,28 @@ function filterTable(){
 
 	var url ;
 	if(document.getElementById("filterD").value=="Price H-L"){
-		console.log("h-l")
+		console.log("h-l");
 		url="http://localhost:6969/gameapp/filterTopPrice";
 		
 	}
 	if(document.getElementById("filterD").value=="Price L-H"){
-		console.log("l-h")
+		console.log("L");
 		url="http://localhost:6969/gameapp/filterLowPrice";
 		
 	}
 	if(document.getElementById("filterD").value=="Release Date"){
+		console.log("d");
 		url="http://localhost:6969/gameapp/filterReleaseD";
 		
 	}
 	if (document.getElementById("filterD").value=="Platform"){
+		console.log("P");
 		url="http://localhost:6969/gameapp/filterPlatform";
 		
 	}
-	else getexistingrecs(); 
+	if (document.getElementById("filterD").value==""){
+		getexistingrecs();
+	}
 
 const Http = new XMLHttpRequest();
 Http.open("GET", url);
@@ -376,13 +375,12 @@ Http.onreadystatechange = function(e){
         maintable.innerHTML="";
     data=JSON.parse(Http.responseText);
     data.forEach(function(item){
-    	console.log(item)
         var game=document.createElement("td");
         var platform=document.createElement("td");
         var releaseD=document.createElement("td");
         var price=document.createElement("td");
         var rank=document.createElement("td");
-        var buttonCell = document.createElement("td");
+        var buttonDel = document.createElement("td");
         game.innerHTML=item.game;
         platform.innerHTML=item.platform;
         releaseD.innerHTML=item.releaseD;
@@ -390,13 +388,13 @@ Http.onreadystatechange = function(e){
         rank.innerHTML=item.rank;
 
         let button = document.createElement("button");
-        button.innerHTML= "delete";
+        button.innerHTML= "x";
         button.type="button";
         button.className = "btn tableDel"
         button.addEventListener("click", function() {
         	deleteData(item.id);
         });
-        buttonCell.appendChild(button);
+        buttonDel.appendChild(button);
 
         var mainRow=document.createElement("tr");
         
@@ -405,7 +403,7 @@ Http.onreadystatechange = function(e){
         mainRow.appendChild(releaseD);
        mainRow.appendChild(price);
         mainRow.appendChild(rank);
-        mainRow.appendChild(buttonCell);
+        mainRow.appendChild(buttonDel);
         maintable.appendChild(mainRow);
 
     });
@@ -416,9 +414,55 @@ return false
 }
 
 
+//updating records
 
 
+function updateRecs(){
+	
+	
+	var url ;
+	var upD;
 
+if(document.getElementById("updateF").value=="Game"){
+		upD=document.getElementById("t8").value;
+		url="http://localhost:6969/gameapp/updateGame/"+idUP+"/"+upD;
+		
+	}
+	if(document.getElementById("updateF").value=="Platform"){
+		upD=document.getElementById("t8").value;
+		url="http://localhost:6969/gameapp/updatePlatform/"+idUP+"/"+upD;
+		
+	}
+	if(document.getElementById("updateF").value=="ReleaseD"){
+		upD=document.getElementById("t8").value;
+		url="http://localhost:6969/gameapp/updateDate/"+idUP+"/"+upD;
+		
+	}
+	if (document.getElementById("updateF").value=="Price"){
+		upD=document.getElementById("t8").value;
+		url="http://localhost:6969/gameapp/updatePrice/"+idUP+"/"+upD;
+		
+	}
+	if (document.getElementById("updateF").value=="Rank"){
+		upD=document.getElementById("t8").value;
+		url="http://localhost:6969/gameapp/updateRank/"+idUP+"/"+upD;
+		
+	}
+	console.log("id="+idUP);
+	console.log("upd=" + upD);
+	console.log(url)
+
+	var Http = new XMLHttpRequest();
+		Http.open("PUT", url);
+		Http.setRequestHeader("Content-Type", "application/json");
+		Http.onload= function(){
+			console.log("getting to last bit")
+			getexistingrecs();
+		}
+		Http.send();
+		return false;
+
+}
 
 
 
