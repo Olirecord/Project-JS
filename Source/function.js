@@ -2,6 +2,8 @@
 
 var idUP;
 
+
+
 function addGame(){
 
 
@@ -43,9 +45,9 @@ refadd.style="width:275px;height:250px;border-radius: 25px;position: absolute;ba
 
 // }
 
-function updGame(id){
+function updGame(){
 
-		var I= id;
+		
 	var refsho = document.getElementById("mainDiv");
 
 	refsho.style="opacity:0.3";	
@@ -226,7 +228,7 @@ function checkvaluesdel(){
 function getexistingrecs(){
 
 const Http = new XMLHttpRequest();
-const url='http://localhost:6969/gameapp/displayall';
+const url='http://'+location.host+':6969/gameapp/displayall';
 Http.open("GET", url);
 Http.onreadystatechange = function(e){
     if (Http.readyState==4){
@@ -259,7 +261,7 @@ Http.onreadystatechange = function(e){
         buttonU.type="button";
         buttonU.className = "btn tableDel"
         buttonU.addEventListener("click", function() {
-        	updGame(item.id);
+        	updGame();
         	idUP=item.id;
         });
         buttonDel.appendChild(button);
@@ -301,7 +303,7 @@ function postData(form){
 		var data = JSON.stringify(body);
 
 		var Http= new XMLHttpRequest();
-		Http.open("POST", 'http://localhost:6969/gameapp/addGame');
+		Http.open("POST", 'http://'+location.host+':6969/gameapp/addGame');
 		Http.setRequestHeader("Content-Type", "application/json");
 		Http.onload= function(){
 			console.log(data);
@@ -323,7 +325,7 @@ function postData(form){
 function deleteData(id){
 		
 		var Http= new XMLHttpRequest();
-		Http.open("DELETE", 'http://localhost:6969/gameapp//deleteEntry/' + id);
+		Http.open("DELETE", 'http://'+location.host+':6969/gameapp//deleteEntry/' + id);
 		Http.setRequestHeader("Content-Type", "application/json");
 
 		Http.onload= function(){
@@ -343,22 +345,22 @@ function filterTable(){
 	var url ;
 	if(document.getElementById("filterD").value=="Price H-L"){
 		console.log("h-l");
-		url="http://localhost:6969/gameapp/filterTopPrice";
+		url="http://"+location.host+":6969/gameapp/filterTopPrice";
 		
 	}
 	if(document.getElementById("filterD").value=="Price L-H"){
 		console.log("L");
-		url="http://localhost:6969/gameapp/filterLowPrice";
+		url="http://"+location.host+":6969/gameapp/filterLowPrice";
 		
 	}
 	if(document.getElementById("filterD").value=="Release Date"){
 		console.log("d");
-		url="http://localhost:6969/gameapp/filterReleaseD";
+		url="http://"+location.host+":6969/gameapp/filterReleaseD";
 		
 	}
 	if (document.getElementById("filterD").value=="Platform"){
 		console.log("P");
-		url="http://localhost:6969/gameapp/filterPlatform";
+		url="http://"+location.host+":6969/gameapp/filterPlatform";
 		
 	}
 	if (document.getElementById("filterD").value==""){
@@ -424,38 +426,34 @@ function updateRecs(){
 
 if(document.getElementById("updateF").value=="Game"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/UpdateGame/"+idUP+"/"+upD;
+		url="http://"+location.host+":6969/gameapp/UpdateGame/"+idUP+"/"+upD;
 		
 	}
 	if(document.getElementById("updateF").value=="Platform"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/UpdatePlatform/"+idUP+"/"+upD;
+		url="http://"+location.host+":6969/gameapp/UpdatePlatform/"+idUP+"/"+upD;
 		
 	}
 	if(document.getElementById("updateF").value=="ReleaseD"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/UpdateDate/"+idUP+"/"+upD;
+		url="http://"+location.host+":6969/gameapp/UpdateDate/"+idUP+"/"+upD;
 		
 	}
 	if (document.getElementById("updateF").value=="Price"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/UpdatePrice/"+idUP+"/"+upD;
+		url="http://"+location.host+":6969/gameapp/UpdatePrice/"+idUP+"/"+upD;
 		
 	}
 	if (document.getElementById("updateF").value=="Rank"){
 		upD=document.getElementById("t8").value;
-		url="http://localhost:6969/gameapp/UpdateRank/"+idUP+"/"+upD;
+		url="http://"+location.host+":6969/gameapp/UpdateRank/"+idUP+"/"+upD;
 		
 	}
-	console.log("id="+idUP);
-	console.log("upd=" + upD);
-	console.log(url)
-
+	
 	var Http = new XMLHttpRequest();
 		Http.open("PUT", url);
 		Http.setRequestHeader("Content-Type", "application/json");
 		Http.onload= function(){
-			console.log("getting to last bit")
 			getexistingrecs();
 		}
 		Http.send();
