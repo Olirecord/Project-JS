@@ -106,7 +106,7 @@ color:black;
 .mainview{
   border-radius: 25px;
     background-color: springgreen ;
-  opacity:0.8;
+  opacity:0.83;
   color:black;
 position: absolute; top:175px; left:140px;
 height: 400; 
@@ -151,7 +151,7 @@ font-size: 30px;
   border-collapse: collapse;
   width: 100%;
 }
-#maintable tr:nth-child(even){background-color: #4682B4;}
+#maintable tr:nth-child(even){background-color: #98FB98;}
 
 #maintable tr:hover {background-color: #FFA500; }
 
