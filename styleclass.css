@@ -151,7 +151,7 @@ font-size: 30px;
   border-collapse: collapse;
   width: 100%;
 }
-#maintable tr:nth-child(even){background-color: #7FFF00;}
+#maintable tr:nth-child(even){background-color: #4682B4;}
 
 #maintable tr:hover {background-color: #FFA500; }
 
