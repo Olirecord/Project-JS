@@ -183,10 +183,10 @@ overflow-y:auto
 
 .tableDel{
 
-  background-color: grey; 
+  background-color: #E89C07; 
   color: black; 
-  border: 2px solid #000103;
-  border-radius: 25px;
+  border: 1px solid #000103;
+  border-radius: 20px;
   
 }
 .tableDel:hover {
