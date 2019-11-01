@@ -47,7 +47,7 @@
 }
 
 .Filter:hover {
-  background-color: blue;
+  background-color: #4CAF50;
   color: white;
 }
     .delG {
@@ -87,7 +87,7 @@
 }
 
 .updG:hover {
-  background-color: #0831DE;
+  background-color: #4CAF50;
   color: white;
 }
 .showRecs {
