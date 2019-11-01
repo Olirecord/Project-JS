@@ -196,3 +196,8 @@ overflow-y:auto
 .menutext{
   padding-left:14px;
 }
+.filterbox{
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-radius: 25px;
+ border: 1px solid black;
+}
