@@ -78,7 +78,7 @@
   color: white;
 }
     .updG {
-  background-color: #E1041C; 
+  background-color: #E89C07; 
   color: black; 
   font-size: 14px;
   border: 1px solid white;
@@ -153,6 +153,7 @@ overflow-y:auto
 }
 .title{
  font-family: 'Cabin', Helvetica, Arial, sans-serif;
+ text-shadow: 1px 1px orange;
  font-size: 55px;
  line-height: 25px
  top:400;
