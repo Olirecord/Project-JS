@@ -19,7 +19,7 @@ var refupd= document.getElementById("updform");
 
 refupd.style.visibility="hidden";
 
-refadd.style="width:275px;height:250px;border-radius: 25px;position: absolute;background-image: url(menu.jpg);background-repeat: no-repeat;background-size: 200%;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px";
+refadd.style="width:275px;height:260px;border-radius: 25px;position: absolute;background-image: url(menu.jpg);background-repeat: no-repeat;background-size: 200%;top: 50%;left: 50%;margin-top: -100px;margin-left: -100px";
 
 }
 

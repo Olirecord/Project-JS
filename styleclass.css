@@ -68,7 +68,7 @@
   background-color: grey; 
   color: black; 
   font-size: 14px;
-  border: 2px solid #000103;
+  border: 2px solid springgreen;
   border-radius: 25px;
   position:absolute;top:100px
 }
@@ -104,6 +104,7 @@ color:black;
 .delform{
   font-family: 'Cabin', Helvetica, Arial, sans-serif;
   background-color: lightseagreen;
+  border: 1px solid white;
   color:white;
   padding-left:14px;
   
@@ -112,7 +113,7 @@ color:black;
   border-radius: 25px;
     background-color: springgreen ;
   color:black;
-  border: 1px solid black;
+  border: 3px solid black;
  opacity:0.85;
 position: absolute; top:175px; left:140px;
 height: 400; 
