@@ -155,7 +155,9 @@ overflow-y:auto
  font-family: 'Cabin', Helvetica, Arial, sans-serif;
  text-shadow: 1px 1px orange;
  font-size: 55px;
- line-height: 25px
+ line-height: 25px;
+ position:absolute;
+ left:450px;
  top:50px;
 }
 #maintable th{
