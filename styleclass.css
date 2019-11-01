@@ -1,5 +1,5 @@
 .addG {
-  background-color: grey; 
+  background-color: #E89C07; 
    font-family: 'Cabin', Helvetica, Arial, sans-serif;
   color: black; 
   border: 2px solid #000103;
@@ -14,7 +14,7 @@
 }
 
     .updateG {
-  background-color: grey; s
+  background-color: grey; 
   color: black; 
   border: 2px solid #000103;
   border-radius: 25px;
@@ -39,7 +39,7 @@
 }
     .Filter {
        font-family: 'Cabin', Helvetica, Arial, sans-serif;
-  background-color: grey; 
+  background-color: #E89C07; 
   color: black; 
   border: 2px solid #000103;
   border-radius: 25px;
@@ -47,7 +47,7 @@
 }
 
 .Filter:hover {
-  background-color: #E89C07;
+  background-color: blue;
   color: white;
 }
     .delG {
@@ -65,10 +65,10 @@
 }
     .addGame {
       font-family: 'Cabin', Helvetica, Arial, sans-serif;
-  background-color: grey; 
+  background-color: #E89C07; 
   color: black; 
   font-size: 14px;
-  border: 2px solid springgreen;
+  border: 1px solid white;
   border-radius: 25px;
   position:absolute;top:100px
 }
