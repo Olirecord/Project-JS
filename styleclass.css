@@ -1,9 +1,10 @@
 .addG {
   background-color: grey; 
+   font-family: 'Cabin', Helvetica, Arial, sans-serif;
   color: black; 
   border: 2px solid #000103;
   border-radius: 25px;
-  position:absolute;top:100px; left:128px
+  position:absolute;top:100px; left:140px
   ;
 }
 
@@ -12,7 +13,7 @@
   color: white;
 }
 
-		.updateG {
+    .updateG {
   background-color: grey; s
   color: black; 
   border: 2px solid #000103;
@@ -24,7 +25,7 @@
   background-color: #0831DE;
   color: white;
 }
-		.deleteG {
+    .deleteG {
   background-color: grey; 
   color: black; 
   border: 2px solid #000103;
@@ -36,12 +37,13 @@
   background-color: #E1041C;
   color: white;
 }
-		.Filter {
+    .Filter {
+       font-family: 'Cabin', Helvetica, Arial, sans-serif;
   background-color: grey; 
   color: black; 
   border: 2px solid #000103;
   border-radius: 25px;
-  position:absolute;top:100px;left:1100px;
+  position:absolute;top:100px;left:1080px;
 }
 
 .Filter:hover {
@@ -62,6 +64,7 @@
   color: white;
 }
     .addGame {
+      font-family: 'Cabin', Helvetica, Arial, sans-serif;
   background-color: grey; 
   color: black; 
   font-size: 14px;
@@ -99,36 +102,50 @@ color:black;
 }
 
 .delform{
+  font-family: 'Cabin', Helvetica, Arial, sans-serif;
   background-color: lightseagreen;
   color:white;
+  padding-left:14px;
   
 }
 .mainview{
   border-radius: 25px;
     background-color: springgreen ;
-  opacity:0.83;
   color:black;
+  border: 1px solid black;
+ opacity:0.85;
 position: absolute; top:175px; left:140px;
 height: 400; 
 width: 1000;
-font-size: 30px;
+font-size: 34px;
+overflow-y:auto
 ;
 }
 .heading{
-  padding: 7px 20px;
+  font-family: 'Cabin', Helvetica, Arial, sans-serif;
+  padding-left:70px;
+  padding-top: 10px;
   top: 50%;
-  left: 50%;
+  left: 30%;
   color:white;
 }
 .text{
   color:white;
 }
 .delform1{
+  font-family: 'Cabin', Helvetica, Arial, sans-serif;
   background-color: lightseagreen;
   color:white;
 }
 .textfield{
   border-style: solid;
+  position:absolute;
+  left:100px;
+  border-radius: 25px;
+}
+.textfieldup{
+  border-style: solid;
+  padding-left:8px;
   position:absolute;
   left:100px;
   border-radius: 25px;
@@ -142,18 +159,24 @@ font-size: 30px;
 #maintable th{
   font-size: 15px;
   border-collapse: collapse;
-  padding-top: 13px;
-  padding-bottom: 13px;
+  padding:15px;
+  text-align: left;
+}
+#maintable td{
+  font-size: 13px;
+  border-collapse: collapse;
+  padding-left:17px;
   text-align: left;
 }
 #maintable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+
   border-collapse: collapse;
   width: 100%;
 }
 #maintable tr:nth-child(even){background-color: #98FB98;}
 
-#maintable tr:hover {background-color: #FFA500; }
+#maintable tr:hover {background-color: #FFA500; opacity: 0.9; }
 
 .tableDel{
 
@@ -166,4 +189,7 @@ font-size: 30px;
 .tableDel:hover {
   background-color: #E1041C;
   color: white;
+}
+.menutext{
+  padding-left:14px;
 }
