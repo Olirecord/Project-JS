@@ -94,7 +94,7 @@ function cancel(){
 	
 	var menu = document.getElementById("mainDiv");
 			menu.style.opacity="0.9";
-			location.reload(true);
+			return false
 
 }
 

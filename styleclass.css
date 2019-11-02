@@ -181,7 +181,7 @@ overflow-y:auto
 }
 #maintable tr:nth-child(even){background-color: #98FB98;}
 
-#maintable tr:hover {background-color: red; opacity: 0.9; }
+#maintable tr:hover {background-color: red; color:white; }
 
 .tableDel{
 
