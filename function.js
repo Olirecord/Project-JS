@@ -1,4 +1,4 @@
-asd// functions to make forms visible
+// functions to make forms visible
 
 var idUP;
 
